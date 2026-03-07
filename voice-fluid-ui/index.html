@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Fluid Voice Assistant</title>
+  <meta name="description" content="A physically-simulated fluid voice assistant UI with real-time audio reactivity and spring-mass wave dynamics." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="bg-orbs">
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+  </div>
+
+  <main class="scene">
+    <!-- Header -->
+    <header class="header">
+      <div class="logo-mark">
+        <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+          <circle cx="11" cy="11" r="10" stroke="rgba(0,229,255,0.6)" stroke-width="1.5"/>
+          <circle cx="11" cy="11" r="5" fill="rgba(0,229,255,0.3)"/>
+          <circle cx="11" cy="11" r="2" fill="#00e5ff"/>
+        </svg>
+      </div>
+      <span class="logo-text">FluidAI</span>
+    </header>
+
+    <!-- Main fluid container -->
+    <section class="petri-dish-wrapper" aria-label="Fluid audio visualizer">
+      <!-- Outer glow ring -->
+      <div class="dish-glow-ring"></div>
+
+      <!-- The glass petri dish -->
+      <div class="petri-dish" id="petri-dish">
+        <!-- Top specular highlight -->
+        <div class="specular-top"></div>
+        <!-- Bottom inner reflection -->
+        <div class="specular-bottom"></div>
+
+        <!-- WebGL / Canvas -->
+        <canvas id="fluid-canvas" aria-hidden="true"></canvas>
+
+        <!-- Glass rim edge effects -->
+        <div class="rim-left"></div>
+        <div class="rim-right"></div>
+      </div>
+
+      <!-- Corner tick marks (cosmetic) -->
+      <div class="tick tick-tl"></div>
+      <div class="tick tick-tr"></div>
+      <div class="tick tick-bl"></div>
+      <div class="tick tick-br"></div>
+    </section>
+
+    <!-- Controls & Status -->
+    <div class="controls">
+      <!-- Status display -->
+      <div class="status-panel">
+        <div class="status-indicator" id="status-indicator"></div>
+        <span class="status-label" id="status-label">IDLE</span>
+      </div>
+
+      <!-- Frequency readout (cosmetic data) -->
+      <div class="readout-panel" id="readout-panel">
+        <div class="readout-item">
+          <span class="readout-value" id="freq-val">—</span>
+          <span class="readout-key">Hz</span>
+        </div>
+        <div class="readout-divider"></div>
+        <div class="readout-item">
+          <span class="readout-value" id="vol-val">—</span>
+          <span class="readout-key">dB</span>
+        </div>
+      </div>
+
+      <!-- Mic button -->
+      <button class="mic-btn" id="mic-btn" aria-label="Toggle microphone">
+        <span class="mic-btn-ring"></span>
+        <svg class="mic-icon" id="mic-icon" width="24" height="24" viewBox="0 0 24 24" fill="none">
+          <rect x="9" y="3" width="6" height="11" rx="3" fill="currentColor"/>
+          <path d="M5 11a7 7 0 0 0 14 0" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          <line x1="12" y1="18" x2="12" y2="22" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          <line x1="8" y1="22" x2="16" y2="22" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+        <svg class="mic-off-icon" id="mic-off-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" style="display:none">
+          <rect x="9" y="3" width="6" height="11" rx="3" fill="currentColor" opacity="0.4"/>
+          <path d="M5 11a7 7 0 0 0 14 0" stroke="currentColor" stroke-width="2" stroke-linecap="round" opacity="0.4"/>
+          <line x1="3" y1="3" x2="21" y2="21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          <line x1="12" y1="18" x2="12" y2="22" stroke="currentColor" stroke-width="2" stroke-linecap="round" opacity="0.4"/>
+        </svg>
+      </button>
+
+      <!-- Assistant audio (hidden, used for second analyser node) -->
+      <audio id="assistant-audio" crossorigin="anonymous"></audio>
+    </div>
+
+    <!-- Bottom hint -->
+    <p class="hint-text" id="hint-text">Click the mic to start listening</p>
+  </main>
+
+  <!-- GSAP -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"
+    integrity="sha512-7eHRwcbYkK4d9g/6tD/mhkf++eoTHwpNM9woBxtPUBWm67zeAfFC+HrdoE2GanKeocly/VxeLvIqwvCdk7qScg=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+  <script src="app.js" type="module"></script>
+</body>
+</html>
