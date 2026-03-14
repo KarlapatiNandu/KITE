@@ -250,15 +250,18 @@ class FluidRenderer {
         ctx.lineTo(0, logH + 4);
         ctx.closePath();
 
-        // --- Fluid fill gradient ---
-        const hue = 210 + Math.sin(this.colorPhase * 0.05) * 22;
-        const sat = 75 + bass * 25;
+        // --- Fluid fill gradient (mercury/silver) ---
+        // colorPhase still shifts but within a narrow gray luminance range
+        const lumShift = Math.sin(this.colorPhase * 0.05) * 8;
+        const topLum = Math.round(255 + lumShift);      // ~247-255
+        const midLum = Math.round(161 + lumShift * 0.6);  // ~156-166  (#a1a1a1 base)
+        const darkLum = Math.round(64 + lumShift * 0.3);  // ~61-66   (#404040 base)
         const grd = ctx.createLinearGradient(0, restY - 20, 0, logH);
-        grd.addColorStop(0.00, `hsla(${hue}, ${sat}%, 70%, 0.55)`);  // waterline glow
-        grd.addColorStop(0.05, `hsla(${hue}, ${sat}%, 58%, 0.80)`);  // bright surface
-        grd.addColorStop(0.30, `hsla(${hue - 8}, ${sat - 10}%, 38%, 0.90)`);
-        grd.addColorStop(0.65, `hsla(220, 80%, 18%, 0.97)`);
-        grd.addColorStop(1.00, `hsla(230, 90%, 10%, 1.00)`);
+        grd.addColorStop(0.00, `rgba(${topLum}, ${topLum}, ${topLum}, 0.55)`);   // white waterline
+        grd.addColorStop(0.05, `rgba(${topLum}, ${topLum}, ${topLum}, 0.80)`);   // bright surface
+        grd.addColorStop(0.30, `rgba(${midLum}, ${midLum}, ${midLum}, 0.90)`);   // mid silver
+        grd.addColorStop(0.65, `rgba(${darkLum}, ${darkLum}, ${darkLum}, 0.97)`);// dark gray
+        grd.addColorStop(1.00, `rgba(0, 0, 0, 1.00)`);                           // black depth
 
         ctx.fillStyle = grd;
         ctx.fill();
@@ -279,13 +282,13 @@ class FluidRenderer {
             ctx.quadraticCurveTo(x0, y0, mx, my);
         }
         ctx.lineTo(logW, restY + heights[n - 1]);
-        ctx.strokeStyle = `hsla(${hue}, 100%, 82%, 0.18)`;
+        ctx.strokeStyle = `rgba(255, 255, 255, 0.18)`;
         ctx.lineWidth = 10;
-        ctx.shadowColor = `hsla(${hue}, 100%, 70%, 0.6)`;
+        ctx.shadowColor = `rgba(255, 255, 255, 0.6)`;
         ctx.shadowBlur = 18;
         ctx.stroke();
 
-        // Glow layer 2: sharp bright line
+        // Glow layer 2: sharp bright line (white/silver)
         ctx.beginPath();
         ctx.moveTo(0, restY + heights[0]);
         for (let i = 0; i < n - 1; i++) {
@@ -298,7 +301,7 @@ class FluidRenderer {
             ctx.quadraticCurveTo(x0, y0, mx, my);
         }
         ctx.lineTo(logW, restY + heights[n - 1]);
-        ctx.strokeStyle = `hsla(${hue}, 100%, 92%, 0.85)`;
+        ctx.strokeStyle = `rgba(255, 255, 255, 0.85)`;
         ctx.lineWidth = 1.5;
         ctx.shadowBlur = 8;
         ctx.stroke();
@@ -350,11 +353,11 @@ class FluidRenderer {
         };
 
         buildPath(-2.5);
-        ctx.fillStyle = 'rgba(255, 60, 80, 0.06)';
+        ctx.fillStyle = 'rgba(200, 190, 180, 0.06)';  // subtle warm gray
         ctx.fill();
 
         buildPath(2.5);
-        ctx.fillStyle = 'rgba(60, 200, 255, 0.06)';
+        ctx.fillStyle = 'rgba(180, 190, 200, 0.06)';  // subtle cool gray
         ctx.fill();
         ctx.restore();
 
@@ -365,10 +368,10 @@ class FluidRenderer {
         ctx.clip(clipR);
 
         buildPath(-2.5);
-        ctx.fillStyle = 'rgba(60, 200, 255, 0.06)';
+        ctx.fillStyle = 'rgba(180, 190, 200, 0.06)';  // subtle cool gray
         ctx.fill();
         buildPath(2.5);
-        ctx.fillStyle = 'rgba(255, 60, 80, 0.06)';
+        ctx.fillStyle = 'rgba(200, 190, 180, 0.06)';  // subtle warm gray
         ctx.fill();
         ctx.restore();
     }
@@ -388,8 +391,8 @@ class FluidRenderer {
             const y = causticsY + Math.cos(t * 2.2 + i * 0.9) * 14;
             const r = 18 + Math.sin(t * 3 + i) * 8;
             const g = ctx.createRadialGradient(x, y, 0, x, y, r);
-            g.addColorStop(0, `rgba(100, 220, 255, ${alpha})`);
-            g.addColorStop(1, 'rgba(100, 220, 255, 0)');
+            g.addColorStop(0, `rgba(200, 200, 200, ${alpha})`);
+            g.addColorStop(1, 'rgba(200, 200, 200, 0)');
             ctx.fillStyle = g;
             ctx.beginPath();
             ctx.ellipse(x, y, r, r * 0.5, 0, 0, Math.PI * 2);

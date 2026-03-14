@@ -1,36 +1,39 @@
 /* ============================================================
-   ROOT TOKENS
+   ROOT TOKENS — K.I.T.E Monochrome Palette
    ============================================================ */
 :root {
-  --deep-blue:     #060d2e;
-  --mid-blue:      #0d1b6e;
-  --cyan:          #00e5ff;
-  --cyan-dim:      rgba(0, 229, 255, 0.35);
-  --cyan-glow:     rgba(0, 229, 255, 0.18);
-  --violet:        #7c3aed;
-  --glass-bg:      rgba(255, 255, 255, 0.04);
-  --glass-rim:     rgba(255, 255, 255, 0.12);
-  --glass-inner:   rgba(255, 255, 255, 0.06);
-  --text-primary:  rgba(255, 255, 255, 0.92);
-  --text-muted:    rgba(255, 255, 255, 0.38);
-  --font:          'Outfit', system-ui, sans-serif;
+  --deep-blue: #000000;
+  --mid-blue: #1a1a1a;
+  --cyan: rgba(255, 255, 255, 0.7);
+  --cyan-dim: rgba(255, 255, 255, 0.15);
+  --cyan-glow: rgba(255, 255, 255, 0.08);
+  --violet: #888888;
+  --glass-bg: rgba(255, 255, 255, 0.03);
+  --glass-rim: rgba(255, 255, 255, 0.2);
+  --glass-inner: rgba(255, 255, 255, 0.04);
+  --text-primary: rgba(255, 255, 255, 0.85);
+  --text-muted: rgba(255, 255, 255, 0.35);
+  --font: 'Outfit', system-ui, sans-serif;
 
   /* State-driven dynamic colour (changed via JS) */
-  --fluid-hue:     210;
-  --fluid-sat:     80%;
-  --orb-scale:     1;
+  --fluid-hue: 0;
+  --fluid-sat: 0%;
+  --orb-scale: 1;
 }
 
 /* ============================================================
    RESET
    ============================================================ */
-*, *::before, *::after {
+*,
+*::before,
+*::after {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-html, body {
+html,
+body {
   width: 100%;
   height: 100%;
   overflow: hidden;
@@ -38,7 +41,7 @@ html, body {
 
 body {
   font-family: var(--font);
-  background: #05071a;
+  background: #000000;
   color: var(--text-primary);
   display: flex;
   align-items: center;
@@ -67,7 +70,7 @@ body {
 .orb-1 {
   width: 600px;
   height: 600px;
-  background: radial-gradient(circle, #1a3bff, transparent 70%);
+  background: radial-gradient(circle, rgba(60, 60, 60, 0.5), transparent 70%);
   top: -150px;
   left: -100px;
   animation: orbDrift1 18s ease-in-out infinite alternate;
@@ -76,7 +79,7 @@ body {
 .orb-2 {
   width: 500px;
   height: 500px;
-  background: radial-gradient(circle, #00e5ff, transparent 70%);
+  background: radial-gradient(circle, rgba(80, 80, 80, 0.4), transparent 70%);
   bottom: -120px;
   right: -80px;
   animation: orbDrift2 22s ease-in-out infinite alternate;
@@ -85,7 +88,7 @@ body {
 .orb-3 {
   width: 400px;
   height: 400px;
-  background: radial-gradient(circle, #7c3aed, transparent 70%);
+  background: radial-gradient(circle, rgba(50, 50, 50, 0.3), transparent 70%);
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -94,16 +97,37 @@ body {
 }
 
 @keyframes orbDrift1 {
-  from { transform: translate(0, 0) rotate(0deg); }
-  to   { transform: translate(60px, 80px) rotate(15deg); }
+  from {
+    transform: translate(0, 0) rotate(0deg);
+  }
+
+  to {
+    transform: translate(60px, 80px) rotate(15deg);
+  }
 }
+
 @keyframes orbDrift2 {
-  from { transform: translate(0, 0) rotate(0deg); }
-  to   { transform: translate(-50px, -70px) rotate(-12deg); }
+  from {
+    transform: translate(0, 0) rotate(0deg);
+  }
+
+  to {
+    transform: translate(-50px, -70px) rotate(-12deg);
+  }
 }
+
 @keyframes orbPulse {
-  0%, 100% { opacity: 0.10; transform: translate(-50%, -50%) scale(1); }
-  50%       { opacity: 0.20; transform: translate(-50%, -50%) scale(1.3); }
+
+  0%,
+  100% {
+    opacity: 0.10;
+    transform: translate(-50%, -50%) scale(1);
+  }
+
+  50% {
+    opacity: 0.20;
+    transform: translate(-50%, -50%) scale(1.3);
+  }
 }
 
 /* ============================================================
@@ -125,16 +149,29 @@ body {
    ============================================================ */
 .header {
   display: flex;
+  flex-direction: column;
   align-items: center;
-  gap: 10px;
-  opacity: 0.7;
+  gap: 12px;
+  opacity: 0.8;
+}
+
+.logo-mark {
+  width: 400px;
+  height: auto;
+}
+
+.logo-img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  filter: brightness(1.2);
 }
 
 .logo-text {
-  font-size: 16px;
-  font-weight: 500;
-  letter-spacing: 0.12em;
-  color: var(--cyan);
+  font-size: 14px;
+  font-weight: 400;
+  letter-spacing: 0.35em;
+  color: rgba(255, 255, 255, 0.6);
   text-transform: uppercase;
 }
 
@@ -143,18 +180,19 @@ body {
    ============================================================ */
 .petri-dish-wrapper {
   position: relative;
-  width: clamp(320px, 80vw, 1100px);
+  width: clamp(320px, 80vw, 600px);
 }
 
 /* Soft outer glow ring */
 .dish-glow-ring {
   position: absolute;
-  inset: -12px;
+  inset: -1px;
   border-radius: 999px;
   background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.4);
   box-shadow:
-    0 0 40px 8px var(--cyan-glow),
-    0 0 90px 20px rgba(13, 27, 110, 0.45);
+    0 0 20px 4px rgba(255, 255, 255, 0.05),
+    0 0 60px 12px rgba(40, 40, 40, 0.3);
   pointer-events: none;
   transition: box-shadow 0.6s ease;
 }
@@ -168,10 +206,34 @@ body {
   border-style: solid;
   border-width: 0;
 }
-.tick-tl { top: -16px; left: 10px; border-top-width: 1px; border-left-width: 1px; }
-.tick-tr { top: -16px; right: 10px; border-top-width: 1px; border-right-width: 1px; }
-.tick-bl { bottom: -16px; left: 10px; border-bottom-width: 1px; border-left-width: 1px; }
-.tick-br { bottom: -16px; right: 10px; border-bottom-width: 1px; border-right-width: 1px; }
+
+.tick-tl {
+  top: -16px;
+  left: 10px;
+  border-top-width: 1px;
+  border-left-width: 1px;
+}
+
+.tick-tr {
+  top: -16px;
+  right: 10px;
+  border-top-width: 1px;
+  border-right-width: 1px;
+}
+
+.tick-bl {
+  bottom: -16px;
+  left: 10px;
+  border-bottom-width: 1px;
+  border-left-width: 1px;
+}
+
+.tick-br {
+  bottom: -16px;
+  right: 10px;
+  border-bottom-width: 1px;
+  border-right-width: 1px;
+}
 
 /* ============================================================
    PETRI DISH (GLASS CONTAINER)
@@ -183,27 +245,31 @@ body {
   border-radius: 999px;
   overflow: hidden;
 
-  /* Glassmorphism base */
+  /* Glassmorphism base — dark neutral */
   background:
-    linear-gradient(
-      180deg,
-      rgba(255,255,255,0.06) 0%,
-      rgba(10,18,80,0.55) 40%,
-      rgba(4,8,36,0.75) 100%
-    );
-  backdrop-filter: blur(20px) saturate(160%);
-  -webkit-backdrop-filter: blur(20px) saturate(160%);
+    linear-gradient(180deg,
+      rgba(255, 255, 255, 0.04) 0%,
+      rgba(10, 10, 10, 0.8) 40%,
+      rgba(5, 5, 5, 0.9) 100%);
+  backdrop-filter: blur(20px) saturate(120%);
+  -webkit-backdrop-filter: blur(20px) saturate(120%);
 
   /* Glass rim border */
-  border: 1px solid var(--glass-rim);
+  border: 1px solid rgba(255, 255, 255, 0.2);
 
   /* Inner glow box-shadow (simulates glass thickness depth) */
   box-shadow:
-    /* outer rim shadow */ 0 0 0 1px rgba(255,255,255,0.05),
-    /* top inner highlight */ inset 0 1px 0 rgba(255,255,255,0.18),
-    /* bottom inner shadow  */ inset 0 -1px 0 rgba(0,0,0,0.5),
-    /* inner depth          */ inset 0 8px 24px rgba(0,0,20,0.55),
-    /* outer drop shadow    */ 0 24px 60px rgba(0,0,0,0.5);
+    /* outer rim shadow */
+    0 0 0 1px rgba(255, 255, 255, 0.03),
+    /* top inner highlight */
+    inset 0 1px 0 rgba(255, 255, 255, 0.12),
+    /* bottom inner shadow  */
+    inset 0 -1px 0 rgba(0, 0, 0, 0.6),
+    /* inner depth          */
+    inset 0 8px 24px rgba(0, 0, 0, 0.55),
+    /* outer drop shadow    */
+    0 20px 50px rgba(0, 0, 0, 0.5),
+    0 0 20px rgba(0, 0, 0, 0.5), inset 0 0 15px rgba(255, 255, 255, 0.05);
 }
 
 /* ---- Specular top highlight (curved glass curvature) ---- */
@@ -213,11 +279,9 @@ body {
   left: 8%;
   width: 84%;
   height: 28px;
-  background: linear-gradient(
-    180deg,
-    rgba(255,255,255,0.22) 0%,
-    rgba(255,255,255,0.0) 100%
-  );
+  background: linear-gradient(180deg,
+      rgba(255, 255, 255, 0.22) 0%,
+      rgba(255, 255, 255, 0.0) 100%);
   border-radius: 0 0 50% 50% / 0 0 100% 100%;
   pointer-events: none;
   z-index: 10;
@@ -230,11 +294,9 @@ body {
   left: 15%;
   width: 70%;
   height: 14px;
-  background: linear-gradient(
-    0deg,
-    rgba(0, 229, 255, 0.08) 0%,
-    transparent 100%
-  );
+  background: linear-gradient(0deg,
+      rgba(255, 255, 255, 0.06) 0%,
+      transparent 100%);
   border-radius: 50%;
   pointer-events: none;
   z-index: 10;
@@ -250,15 +312,17 @@ body {
   z-index: 10;
   pointer-events: none;
 }
+
 .rim-left {
   left: 0;
-  background: linear-gradient(90deg, rgba(255,255,255,0.08) 0%, transparent 100%);
-  border-right: 1px solid rgba(255,255,255,0.06);
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0.08) 0%, transparent 100%);
+  border-right: 1px solid rgba(255, 255, 255, 0.06);
 }
+
 .rim-right {
   right: 0;
-  background: linear-gradient(270deg, rgba(255,255,255,0.08) 0%, transparent 100%);
-  border-left: 1px solid rgba(255,255,255,0.06);
+  background: linear-gradient(270deg, rgba(255, 255, 255, 0.08) 0%, transparent 100%);
+  border-left: 1px solid rgba(255, 255, 255, 0.06);
 }
 
 /* ============================================================
@@ -301,20 +365,31 @@ body {
 .status-indicator.idle {
   background: var(--text-muted);
 }
+
 .status-indicator.listening {
-  background: var(--cyan);
-  box-shadow: 0 0 8px 2px var(--cyan);
+  background: #ffffff;
+  box-shadow: 0 0 8px 2px rgba(255, 255, 255, 0.6);
   animation: indicatorPulse 1.2s ease-in-out infinite;
 }
+
 .status-indicator.speaking {
-  background: #a78bfa;
-  box-shadow: 0 0 8px 2px #a78bfa;
+  background: #aaaaaa;
+  box-shadow: 0 0 8px 2px rgba(170, 170, 170, 0.5);
   animation: indicatorPulse 0.8s ease-in-out infinite;
 }
 
 @keyframes indicatorPulse {
-  0%, 100% { transform: scale(1); opacity: 1; }
-  50%       { transform: scale(1.5); opacity: 0.7; }
+
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+
+  50% {
+    transform: scale(1.5);
+    opacity: 0.7;
+  }
 }
 
 .status-label {
@@ -326,16 +401,21 @@ body {
   transition: color 0.4s;
 }
 
-.status-label.listening { color: var(--cyan); }
-.status-label.speaking  { color: #a78bfa; }
+.status-label.listening {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.status-label.speaking {
+  color: #aaaaaa;
+}
 
 /* ---- Readout Panel ---- */
 .readout-panel {
   display: flex;
   align-items: center;
   gap: 12px;
-  background: rgba(255,255,255,0.04);
-  border: 1px solid rgba(255,255,255,0.07);
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.07);
   border-radius: 10px;
   padding: 6px 14px;
   min-width: 120px;
@@ -373,22 +453,24 @@ body {
 .readout-divider {
   width: 1px;
   height: 20px;
-  background: rgba(255,255,255,0.1);
+  background: rgba(255, 255, 255, 0.1);
 }
 
 /* ---- Mic Button ---- */
 .mic-btn {
   position: relative;
-  width: 60px;
-  height: 60px;
-  border-radius: 50%;
-  border: 1.5px solid rgba(0,229,255,0.45);
-  background: rgba(0,229,255,0.08);
-  color: var(--cyan);
+  min-width: 60px;
+  height: 44px;
+  border-radius: 22px;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  background: rgba(255, 255, 255, 0.05);
+  color: rgba(255, 255, 255, 0.6);
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
+  gap: 8px;
+  padding: 0 18px;
   transition:
     background 0.3s,
     border-color 0.3s,
@@ -398,10 +480,18 @@ body {
   flex-shrink: 0;
 }
 
+.mic-label {
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  color: rgba(255, 255, 255, 0.5);
+  white-space: nowrap;
+}
+
 .mic-btn:hover {
-  background: rgba(0,229,255,0.16);
-  box-shadow: 0 0 20px rgba(0,229,255,0.3);
-  transform: scale(1.06);
+  background: rgba(255, 255, 255, 0.1);
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.15);
+  transform: scale(1.04);
 }
 
 .mic-btn:active {
@@ -409,41 +499,48 @@ body {
 }
 
 .mic-btn.listening {
-  border-color: var(--cyan);
-  background: rgba(0,229,255,0.18);
-  box-shadow: 0 0 28px rgba(0,229,255,0.5);
+  border-color: rgba(255, 255, 255, 0.5);
+  background: rgba(255, 255, 255, 0.1);
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
 }
 
 .mic-btn.speaking {
-  border-color: #a78bfa;
-  background: rgba(167,139,250,0.18);
-  color: #a78bfa;
-  box-shadow: 0 0 28px rgba(167,139,250,0.5);
+  border-color: rgba(170, 170, 170, 0.5);
+  background: rgba(170, 170, 170, 0.1);
+  color: #aaaaaa;
+  box-shadow: 0 0 20px rgba(170, 170, 170, 0.2);
 }
 
 /* Animated expanding ring */
 .mic-btn-ring {
   position: absolute;
   inset: -6px;
-  border-radius: 50%;
+  border-radius: 22px;
   border: 1px solid transparent;
   pointer-events: none;
   transition: border-color 0.3s, transform 0.3s;
 }
 
 .mic-btn.listening .mic-btn-ring {
-  border-color: var(--cyan-dim);
+  border-color: rgba(255, 255, 255, 0.15);
   animation: micRing 1.8s ease-out infinite;
 }
 
 .mic-btn.speaking .mic-btn-ring {
-  border-color: rgba(167,139,250,0.4);
+  border-color: rgba(170, 170, 170, 0.2);
   animation: micRing 1.2s ease-out infinite;
 }
 
 @keyframes micRing {
-  0%   { transform: scale(1);   opacity: 1; }
-  100% { transform: scale(1.6); opacity: 0; }
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+
+  100% {
+    transform: scale(1.3);
+    opacity: 0;
+  }
 }
 
 /* ============================================================
@@ -458,26 +555,56 @@ body {
 }
 
 /* ============================================================
+   FOOTER TEXT
+   ============================================================ */
+.footer-text {
+  font-size: 10px;
+  color: rgba(255, 255, 255, 0.18);
+  letter-spacing: 0.3em;
+  text-align: center;
+  margin-top: 12px;
+}
+
+/* ============================================================
    STATE-DRIVEN: DISH GLOW RING COLORS
    ============================================================ */
 body.state-listening .dish-glow-ring {
+  border-color: rgba(255, 255, 255, 0.5);
   box-shadow:
-    0 0 50px 12px rgba(0,229,255,0.28),
-    0 0 100px 30px rgba(13,27,110,0.5);
+    0 0 30px 8px rgba(255, 255, 255, 0.12),
+    0 0 80px 20px rgba(40, 40, 40, 0.4);
 }
 
 body.state-speaking .dish-glow-ring {
+  border-color: rgba(200, 200, 200, 0.4);
   box-shadow:
-    0 0 50px 12px rgba(167,139,250,0.28),
-    0 0 100px 30px rgba(60,20,120,0.5);
+    0 0 30px 8px rgba(200, 200, 200, 0.10),
+    0 0 80px 20px rgba(40, 40, 40, 0.35);
 }
 
 /* ============================================================
    RESPONSIVE
    ============================================================ */
 @media (max-width: 600px) {
-  .scene { gap: 24px; }
-  .controls { gap: 16px; }
-  .readout-panel { display: none; }
-  .mic-btn { width: 52px; height: 52px; }
+  .scene {
+    gap: 24px;
+  }
+
+  .controls {
+    gap: 16px;
+  }
+
+  .readout-panel {
+    display: none;
+  }
+
+  .mic-btn {
+    min-width: 44px;
+    height: 40px;
+    padding: 0 12px;
+  }
+
+  .mic-label {
+    display: none;
+  }
 }
