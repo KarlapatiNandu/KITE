@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Fluid Voice Assistant</title>
-  <meta name="description" content="A physically-simulated fluid voice assistant UI with real-time audio reactivity and spring-mass wave dynamics." />
+  <title>K.I.T.E - Premium Voice Assistant</title>
+  <meta name="description" content="K.I.T.E — Aerospace grade voice assistant interface with physically-simulated fluid dynamics and real-time audio reactivity." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet" />
@@ -21,13 +21,9 @@
     <!-- Header -->
     <header class="header">
       <div class="logo-mark">
-        <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
-          <circle cx="11" cy="11" r="10" stroke="rgba(0,229,255,0.6)" stroke-width="1.5"/>
-          <circle cx="11" cy="11" r="5" fill="rgba(0,229,255,0.3)"/>
-          <circle cx="11" cy="11" r="2" fill="#00e5ff"/>
-        </svg>
+        <img src="../logo-Photoroom.png" alt="K.I.T.E Logo" class="logo-img" />
       </div>
-      <span class="logo-text">FluidAI</span>
+      <span class="logo-text">K . I . T . E</span>
     </header>
 
     <!-- Main fluid container -->
@@ -81,13 +77,14 @@
       <!-- Mic button -->
       <button class="mic-btn" id="mic-btn" aria-label="Toggle microphone">
         <span class="mic-btn-ring"></span>
-        <svg class="mic-icon" id="mic-icon" width="24" height="24" viewBox="0 0 24 24" fill="none">
+        <span class="mic-label">SPEAK NATURALLY</span>
+        <svg class="mic-icon" id="mic-icon" width="20" height="20" viewBox="0 0 24 24" fill="none">
           <rect x="9" y="3" width="6" height="11" rx="3" fill="currentColor"/>
           <path d="M5 11a7 7 0 0 0 14 0" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
           <line x1="12" y1="18" x2="12" y2="22" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
           <line x1="8" y1="22" x2="16" y2="22" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
         </svg>
-        <svg class="mic-off-icon" id="mic-off-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" style="display:none">
+        <svg class="mic-off-icon" id="mic-off-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" style="display:none">
           <rect x="9" y="3" width="6" height="11" rx="3" fill="currentColor" opacity="0.4"/>
           <path d="M5 11a7 7 0 0 0 14 0" stroke="currentColor" stroke-width="2" stroke-linecap="round" opacity="0.4"/>
           <line x1="3" y1="3" x2="21" y2="21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
@@ -101,6 +98,9 @@
 
     <!-- Bottom hint -->
     <p class="hint-text" id="hint-text">Click the mic to start listening</p>
+
+    <!-- Footer -->
+    <p class="footer-text">A E R O S P A C E &nbsp; G R A D E &nbsp; I N T E R F A C E &nbsp; v 4 . 0 . 2</p>
   </main>
 
   <!-- GSAP -->
